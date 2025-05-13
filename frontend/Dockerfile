@@ -1,14 +1,11 @@
-# Stage 1
-FROM node:18-alpine as build
+FROM node:18-alpine
 
 WORKDIR /app
-
-COPY . .
-
+COPY frontend/package*.json ./
 RUN npm install
+COPY frontend/ .
 RUN npm run build
 
-# Stage 2
-FROM nginx:alpine
-
-COPY --from=build /app/build /usr/share/nginx/html
+# Serve using a static server (like nginx or serve)
+RUN npm install -g serve
+CMD ["serve", "-s", "dist", "-l", "3000"]
