@@ -4,13 +4,13 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# ✅ Allow requests from frontend
+# ✅ Allow frontend URLs (Render + local dev)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000", # still allow local dev
-    "https://ai-call-summary-frontend.onrender.com",   # Frontend URL
-    ]
+        "https://ai-call-summary-frontend.onrender.com",
+        "http://localhost:3000"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
