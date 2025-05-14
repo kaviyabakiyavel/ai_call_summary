@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './index.css';
 
+const API_URL = "http://127.0.0.1:8000" || "https://ai-call-summary-koqo.onrender.com/"
+
 function App() {
   const [transcript, setTranscript] = useState('');
   const [transcripts, setTranscripts] = useState([]);
 
   const handleSubmit = async () => {
     if (transcript.trim() === '') return;
-    await axios.post('http://127.0.0.1:8000/transcripts', {
+    await axios.post(`${API_URL}/transcripts`, {
       transcript_text: transcript,
     });
     setTranscript('');
@@ -16,7 +18,7 @@ function App() {
   };
 
   const fetchTranscripts = async () => {
-    const res = await axios.get('http://127.0.0.1:8000/transcripts');
+    const res = await axios.get(`${API_URL}/transcripts`);
     setTranscripts(res.data);
   };
 
