@@ -46,16 +46,16 @@ cd ai-call-summary
  - Use Axios or Fetch to call your backend API.
 
  8) Step up Tailwind 
-npm uninstall tailwindcss
-npm install -D tailwindcss@3.4.1 postcss autoprefixer
-npx tailwindcss init -p
-- Create postcss.config.js
-- Create tailwind.config.js
-- Create src/index.css
-- Clean Cache PowerShell
-Remove-Item -Recurse -Force node_modules
-Remove-Item -Force package-lock.json
-npm install
+ - npm uninstall tailwindcss
+ - npm install -D tailwindcss@3.4.1 postcss autoprefixer
+ - npx tailwindcss init -p
+ - Create postcss.config.js
+ - Create tailwind.config.js
+ - Create src/index.css
+ - Clean Cache PowerShell
+ - Remove-Item -Recurse -Force node_modules
+ - Remove-Item -Force package-lock.json
+ - npm install
 
 
  9) (Optional) Use OpenAI for Summary
