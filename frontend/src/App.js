@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './index.css';
 
-const API_URL = "http://127.0.0.1:8000" || "https://ai-call-summary-koqo.onrender.com/"
+const API_URL = process.env.REACT_APP_API_URL;
+// console.log("API_URL",API_URL)
 
 function App() {
   const [transcript, setTranscript] = useState('');
