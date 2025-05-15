@@ -4,7 +4,7 @@ from app import schemas, crud, database
 from typing import List
 import os
 from dotenv import load_dotenv
-from openai 
+import openai
 
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
