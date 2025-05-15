@@ -12,3 +12,9 @@ class TranscriptOut(BaseModel):
 
     class Config:
         from_attributes = True
+
+class TranscriptRequest(BaseModel):
+    transcript: str
+
+class SummaryResponse(BaseModel):
+    summary: str
