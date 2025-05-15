@@ -4,10 +4,10 @@ from app import schemas, crud, database
 from typing import List
 import os
 from dotenv import load_dotenv
-from openai import OpenAI
+from openai 
 
 load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
 router = APIRouter()
 
@@ -20,7 +20,7 @@ def get_db():
 
 def generate_summary(transcript_text: str) -> str:
     try:
-        response = client.chat.completions.create(
+        response = openai.ChatCompletion.create(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": "Summarize the following transcript from a dental office phone call."},
