@@ -37,15 +37,20 @@ cd ai-call-summary
    Liver Server URL - http://127.0.0.1:8000/docs
    Local DB - DB Browser for SQLite -> open call_summary.db -> click on browser data 
 
-6) Create Frontend (React + Tailwind)
+7) (Optional) Use OpenAI for Summary
+   
+8) requirement.txt is required when we deploy 
+   its needed to install all the packages 
 
-7) Frontend Features
+9) Create Frontend (React + Tailwind)
+
+10) Frontend Features
  - Textarea to paste transcript
  - Button to submit (calls backend)
  - Display Transcript and Summary
  - Use Axios or Fetch to call your backend API.
 
- 8) Step up Tailwind 
+11) Step up Tailwind 
  - npm uninstall tailwindcss
  - npm install -D tailwindcss@3.4.1 postcss autoprefixer
  - npx tailwindcss init -p
@@ -58,18 +63,16 @@ cd ai-call-summary
  - npm install
 
 
- 9) (Optional) Use OpenAI for Summary
-
- 10) Dockerize the App 
+12) Dockerize the App 
  Create a Dockerfile for backend and frontend separately, or use Docker Compose for both.
 
- 11) Deploy 
+13) Deploy 
    - Render
    - Railway
    - Replit
    - DockerHub + VPS
 
-13) README File for FE, BE
+14) README File for FE, BE
 
 
 
