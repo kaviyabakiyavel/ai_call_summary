@@ -22,7 +22,7 @@ def generate_summary(transcript_text: str) -> str:
     try:
         response = openai.ChatCompletion.create(
             model="gpt-4o-mini",
-            temperature=0.5,# 👈 Add this line to control randomness
+            temperature=0.5,# 👈 Add this line to control randomness The API uses a default of 1.0 (more creative, sometimes risky)
             messages=[
                 {"role": "system", "content": "Summarize the following transcript from a dental office phone call."},
                 {"role": "user", "content": transcript_text}
