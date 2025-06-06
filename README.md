@@ -91,3 +91,51 @@ ai-call-summary/
 ├── requirements.txt     # Python dependencies , helps for developer to install all depdencies , helps Docker deployment , CI/CD pipeline 
 ├── README.md            # Project overview
 └── .env                 # Environment variables (e.g., OpenAI key)
+
+
+What is LLM ? 
+
+LLM stands for Large Language Model — a type of AI model trained on huge amounts of text data to understand and generate human-like language.Popular LLMs include:
+ - OpenAI GPT-3.5 / GPT-4 / GPT-4o
+ - Google Gemini
+ - Anthropic Claude
+ - Meta LLaMA
+ - Hugging Face models like BART, T5, or Falcon
+
+ response = openai.ChatCompletion.create(
+    model="gpt-4o-mini",
+    temperature=0.5,
+    messages=[
+        {"role": "system", "content": "Summarize the following transcript..."},
+        {"role": "user", "content": transcript_text}
+    ]
+)
+
+Your range 0.5 to 0.7 is common and often used for balanced responses.
+
+Temperature     Behavior
+0.0             Deterministic, most predictable. Always gives the same answer. Good for facts.
+0.5             Some creativity, but still focused. Good for summarization, support bots.
+0.7             Balanced randomness — mixes creativity with logic. Default for ChatGPT.
+1.0             Creative and diverse, more variation in responses.
+>1.2            Very random, may generate less coherent answers.
+
+Prompt Engineering Methods
+1) Zero-shot Prompting
+2) One-shot Prompting
+3) Few-shot Prompting
+4) Chain of Thought Prompting (CoT)
+5) Self-Consistency Prompting
+6) Role Prompting
+7) Instruction Prompting
+8) Multimodal Prompting (for GPT-4-turbo or GPT-4o)
+9) ReAct Prompting (Reason + Act)
+10) Context-aware Prompting
+
+My project using this prompting technices 
+Zero-shot prompting	
+   You provide no examples of how the summary should look — the model infers the format and structure from the task itself.
+
+Role prompting
+	Your system message — “Summarize the following transcript from a dental office phone call” — gives the model context and purpose, which helps it behave like a virtual assistant for dental staff.
+
