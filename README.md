@@ -141,3 +141,24 @@ Role prompting
 
 Now updated project from manual text to audio 
 user can upload audio file by using whisper mode converts audio to text 
+
+
+
+
+By mistakenly commited open api key to git follow this step to rewrite history
+# Remove the file from git tracking
+git rm --cached backend/.env
+
+# Add .env to .gitignore so it’s not tracked in the future
+echo "backend/.env" >> .gitignore
+
+# Commit the change
+git commit -m "Remove API key from repo"
+
+# Replace API key in history
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch backend/.env" \
+  --prune-empty --tag-name-filter cat -- --all
+
+# Force push to overwrite history (be careful)
+git push origin main --force

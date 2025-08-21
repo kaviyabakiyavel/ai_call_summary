@@ -1,45 +1,13 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import  { useState } from "react";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
 
 function TranscriptDashboard() {
-  // Manual transcript states
-  const [currentTranscript, setCurrentTranscript] = useState("");
-  const [savedTranscripts, setSavedTranscripts] = useState([]);
 
   // Audio upload states
   const [audioFile, setAudioFile] = useState(null);
   const [audioResponse, setAudioResponse] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  // Fetch saved transcripts
-  const fetchTranscripts = async () => {
-    try {
-      const res = await axios.get(`${API_URL}/transcripts`);
-      setSavedTranscripts(res.data);
-    } catch (err) {
-      console.error("Failed to fetch transcripts:", err);
-    }
-  };
-
-  useEffect(() => {
-    fetchTranscripts();
-  }, []);
-
-  // Manual transcript submit
-  const handleManualSubmit = async () => {
-    if (!currentTranscript.trim()) return;
-    try {
-      await axios.post(`${API_URL}/transcripts`, {
-        transcript_text: currentTranscript,
-      });
-      setCurrentTranscript("");
-      fetchTranscripts();
-    } catch (err) {
-      console.error("Failed to save transcript:", err);
-    }
-  };
 
   // Audio upload
   const handleAudioUpload = async (file) => {
