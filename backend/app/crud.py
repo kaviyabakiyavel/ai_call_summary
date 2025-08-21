@@ -1,42 +1,42 @@
 from sqlalchemy.orm import Session
-from app import models
+from . import models
 
-def create_transcript(db: Session, transcript_text: str, summary: str):
-    transcript = models.Transcript(transcript_text=transcript_text, summary=summary)
-    db.add(transcript)
+# ------------------------------
+# Create a new transcript record
+# ------------------------------
+
+def create_audio_transcript(db: Session, filename: str, transcript: str, summary: str):
+    existing = db.query(models.AudioTranscript).filter_by(filename=filename).first()
+    if existing:
+        return existing
+
+    db_transcript = models.AudioTranscript(
+        filename=filename,
+        transcript=transcript,
+        summary=summary
+    )
+    db.add(db_transcript)
     db.commit()
-    db.refresh(transcript)
+    db.refresh(db_transcript)
+    return db_transcript
 
-    # To automatically insert into the commlog table whenever a transcript is created. no need a seperate function 
-    commlog = models.Commlog(transcript_id=transcript.id)
-    db.add(commlog)
-    db.commit()
-    db.refresh(commlog)
+# ------------------------------
+# Fetch transcripts
+# ------------------------------
 
-    return transcript
+def get_audio_transcripts(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(models.AudioTranscript).offset(skip).limit(limit).all()
 
-def get_transcripts(db: Session):
-    return db.query(models.Transcript).all()
+# ------------------------------
+# Delete records
+# ------------------------------
 
-def delete_transcripts(db: Session):
-    batch_size = 50  # Adjust as needed
+def delete_audio_transcripts(db: Session, batch_size: int = 50):
     while True:
-        to_delete = db.query(models.Transcript).limit(batch_size).all()
+        to_delete = db.query(models.AudioTranscript).limit(batch_size).all()
         if not to_delete:
             break
         for record in to_delete:
             db.delete(record)
         db.commit()
-
-    return {"message": "All transcripts deleted"}
-
-def delete_commlogs(db:Session):
-    batch_size = 50
-    while True:
-        to_delete = db.query(models.Commlog).limit(batch_size).all()
-        if not to_delete:
-            break
-        for record in to_delete:
-            db.delete(record)
-        db.commit()
-    return{"message": "All commlog record deleted"}
+    return {"message": "All audio transcripts deleted"}

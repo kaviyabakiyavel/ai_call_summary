@@ -10,7 +10,7 @@ cd ai-call-summary
 2) Create Backend (FastAPI)
     A. Set up a virtual environment 
         - python -m venv env
-        - env/Scripts/activate
+        - source env/bin/activate
 
     B. Install Dependencies 
         - pip install fastapi uvicorn sqlalchemy pydantic alembic sqlite3 openai
@@ -139,3 +139,5 @@ Zero-shot prompting
 Role prompting
 	Your system message — “Summarize the following transcript from a dental office phone call” — gives the model context and purpose, which helps it behave like a virtual assistant for dental staff.
 
+Now updated project from manual text to audio 
+user can upload audio file by using whisper mode converts audio to text 

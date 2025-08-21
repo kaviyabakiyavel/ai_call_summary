@@ -1,18 +1,17 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from app.models import Base
-from sqlalchemy import text
 
-DATABASE_URL = "sqlite:///./call_summary.db"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./audio.db"
 
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False, "timeout":60})
-SessionLocal = sessionmaker(bind=engine)
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL,
+    connect_args={"check_same_thread": False, "timeout": 60},
+)
 
-# Set journal_mode to WAL for better concurrency
+# Enable WAL mode
 with engine.connect() as conn:
     conn.execute(text("PRAGMA journal_mode=WAL"))
 
-SessionLocal = sessionmaker(bind=engine)
-
-# Create tables if they don't exist
-Base.metadata.create_all(bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
